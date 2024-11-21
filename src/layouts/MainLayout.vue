@@ -12,7 +12,7 @@
         />
 
         <q-toolbar-title>
-          Quasar App
+          PC2 Hernan Marecos MovieAPI
         </q-toolbar-title>
 
         <div>Quasar v{{ $q.version }}</div>
