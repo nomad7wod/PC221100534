@@ -2,11 +2,14 @@
   <q-page class="q-pa-md">
     <q-input v-model="query" label="Buscar películas" outlined class="q-mb-md" />
 
-    <!-- Botón para búsqueda general -->
+    <!-- Boton de busqueda general -->
     <q-btn label="Buscar" color="primary" @click="fetchMovies" />
 
-    <!-- Nuevo botón para búsqueda por nombre -->
+    <!-- Boton de busqueda por nombre -->
     <q-btn label="Búsqueda por Nombre" color="secondary" @click="searchByName" class="q-ml-md" />
+
+    <!-- Boton de Log Out -->
+    <q-btn label="Cerrar sesión" color="secondary" @click="logOut" class="q-mt-md" />
 
     <q-list bordered padding>
       <q-item v-for="movie in movies" :key="movie.id" class="q-mt-md">
@@ -27,12 +30,12 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      query: '',  // El texto de búsqueda que el usuario ingresa
+      query: '',  // texto a usar para buscar las pelis
       movies: [],  // Las películas obtenidas de la API
     };
   },
   methods: {
-    // Método para obtener películas por nombre o por otros criterios
+    //busqueda que pide la PC con su url de popularidad
     async fetchMovies() {
       const API_KEY = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxNWFiZmViNTExZGViZGFjYTg3YzE1MDEwNjQ5NmU4ZiIsIm5iZiI6MTczMjE2MzM4OC4zMzQ5MTU2LCJzdWIiOiI2NzNlYjY2YmFiNGQ2ZDBlOGQxYWM5YTIiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.biDXTTmcvqIlztN104w7RyXLr44S79qyi1sjKHdD7VE";
       const URL = `https://api.themoviedb.org/3/discover/movie?language=es-PE&sort_by=popularity.desc&query=${this.query}`;
@@ -50,7 +53,7 @@ export default {
       }
     },
 
-    // Método para realizar una búsqueda por nombre de película
+    // realizar una búsqueda por nombre de película extra a la pc
     async searchByName() {
       const API_KEY = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxNWFiZmViNTExZGViZGFjYTg3YzE1MDEwNjQ5NmU4ZiIsIm5iZiI6MTczMjE2MzM4OC4zMzQ5MTU2LCJzdWIiOiI2NzNlYjY2YmFiNGQ2ZDBlOGQxYWM5YTIiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.biDXTTmcvqIlztN104w7RyXLr44S79qyi1sjKHdD7VE";
       const URL = `https://api.themoviedb.org/3/search/movie?language=es-PE&query=${this.query}`;
@@ -67,6 +70,18 @@ export default {
         });
       }
     },
+
+    logOut() {
+      //Remover el item para el logout
+      localStorage.removeItem('authToken');
+
+
+      this.$router.push('/');
+
+    },
+
+
+
   },
 };
 </script>

@@ -27,6 +27,10 @@ export default {
         );
 
         if (response.status === 200) {
+
+          localStorage.setItem('authToken', response.data.token);
+
+
           // Redirecciona a la página de películas si el login es exitoso
           this.$router.push('/movies');
         }
