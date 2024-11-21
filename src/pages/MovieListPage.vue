@@ -2,15 +2,19 @@
   <q-page class="q-pa-md">
     <q-input v-model="query" label="Buscar películas" outlined class="q-mb-md" />
 
-    <!-- Boton de busqueda general -->
-    <q-btn label="Buscar" color="primary" @click="fetchMovies" />
+    <div class="q-gutter-md row items-center">
+      <!-- Boton de busqueda general -->
+      <q-btn label="Buscar" color="primary" @click="fetchMovies" class="q-mb-md" />
 
-    <!-- Boton de busqueda por nombre -->
-    <q-btn label="Búsqueda por Nombre" color="secondary" @click="searchByName" class="q-ml-md" />
+      <!-- Boton de busqueda por nombre -->
+      <q-btn label="Búsqueda por Nombre" color="secondary" @click="searchByName" class="q-mb-md" />
 
-    <!-- Boton de Log Out -->
-    <q-btn label="Cerrar sesión" color="secondary" @click="logOut" class="q-mt-md" />
+      <!-- Espacio entre los botones de búsqueda y el botón de log out -->
+      <q-space />
 
+      <!-- Boton de Log Out alineado al extremo derecho -->
+      <q-btn label="Cerrar sesión" color="secondary" @click="logOut" class="q-mb-md" />
+    </div>
     <q-list bordered padding>
       <q-item v-for="movie in movies" :key="movie.id" class="q-mt-md">
         <q-img :src="`http://image.tmdb.org/t/p/w500${movie.poster_path}`" style="width: 100px;" />
